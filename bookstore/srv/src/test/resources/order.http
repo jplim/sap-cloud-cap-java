@@ -1,0 +1,37 @@
+### Create a new order
+POST http://localhost:8080/odata/v4/OrdersService/Orders
+Content-Type: application/json
+
+{
+    "ID": "50425a69-48b9-45f1-b6d2-687d55355e03",
+    "currency_code": "USD"
+}
+
+### Create a new order item
+POST http://localhost:8080/odata/v4/OrdersService/OrderItems
+Content-Type: application/json
+
+{
+    "parent_ID": "50425a69-48b9-45f1-b6d2-687d55355e03",
+    "book_ID": "abed2f7a-c50e-4bc5-89fd-9a00a54b4b16",
+    "amount": 2
+}
+
+### Create another new order
+POST http://localhost:8080/odata/v4/OrdersService/Orders
+Content-Type: application/json
+
+{
+    "ID": "997f4ac4-7f07-4c07-a009-3168317a10aa",
+    "currency_code": "USD"
+}
+
+### Create another new order item
+POST http://localhost:8080/odata/v4/OrdersService/OrderItems
+Content-Type: application/json
+
+{
+    "parent_ID": "997f4ac4-7f07-4c07-a009-3168317a10aa",
+    "book_ID": "fd0c5fda-8811-4e20-bcff-3a776abc290a",
+    "amount": 10
+}
