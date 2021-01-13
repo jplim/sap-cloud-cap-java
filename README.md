@@ -53,6 +53,20 @@ spring:
       maximum-pool-size: 1
 ```
 
+# bookstore
+
+## Usage
+
+### Initialize the project
+
+Initialize the application using maven arcetype `cds-services-archtype`.
+
+```bash
+> mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
+-DarchetypeVersion=RELEASE \
+-DgroupId=com.sap.cap -DartifactId=bookstore
+```
+
 # Reference
 
 [Build a Business Application Using CAP for Java](https://developers.sap.com/mission.cap-java-app.html)
