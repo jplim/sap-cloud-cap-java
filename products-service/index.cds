@@ -1,2 +1,2 @@
 using from './db/schema';
-using form './srv/admin-service';
+using from './srv/admin-service';

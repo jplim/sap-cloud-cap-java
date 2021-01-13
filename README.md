@@ -67,6 +67,12 @@ Initialize the application using maven arcetype `cds-services-archtype`.
 -DgroupId=com.sap.cap -DartifactId=bookstore
 ```
 
+Alternative.
+
+```bash
+> cds init bookstore --add java --java:package com.sap.cap.bookstore
+```
+
 ### Reuse service as npm dependency for products-service
 
 Install the reusable service project as npm dependency
@@ -79,6 +85,38 @@ Install all other packages and simplify the overall dependency structure `npm de
 
 ```bash
 > npm install && npm dedupe
+```
+
+### Setup SQLite
+
+Install SQLite.
+
+```bash
+> npm install --save-dev sqlite3
+```
+
+Initialize the database with the defined domain model.
+
+```bash
+> cds deploy --to sqlite
+```
+
+Configure CAP application to use SQLite database.
+
+1. Go to `srv/src/main/resources`, locate and open the `application.yaml` and modify the file as follow:
+2. For the field `url`, replace the string `"jdbc:sqlite::memory:"` with a reference to your local database file `"jdbc:sqlite:/home/user/projects/products-service/sqlite.db"`
+3. Set the value of `initialization-mode` from `always` to `never`, because you've already initialized the database when running `cds deploy --to sqlite`.
+
+```yaml
+---
+spring:
+  profiles: default
+  datasource:
+    url: "jdbc:sqlite:/home/user/projects/bookstore/sqlite.db"
+    driver-class-name: org.sqlite.JDBC
+    initialization-mode: never
+    hikari:
+      maximum-pool-size: 1
 ```
 
 # VSCode Configs
