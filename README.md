@@ -81,7 +81,9 @@ Install all other packages and simplify the overall dependency structure `npm de
 > npm install && npm dedupe
 ```
 
-# VSCode Launch Config
+# VSCode Configs
+
+## Launch config
 
 Locate in `".vscode/launch.json"`.
 
@@ -113,6 +115,26 @@ Locate in `".vscode/launch.json"`.
     ],
     "version": "0.2.0"
   }
+```
+
+## Tasks config
+
+Locate in `".vscode/tasks.json"`.
+
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build products-service",
+      "type": "shell",
+      "command": "mvn clean install",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}
 ```
 
 # Reference
