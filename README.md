@@ -67,6 +67,54 @@ Initialize the application using maven arcetype `cds-services-archtype`.
 -DgroupId=com.sap.cap -DartifactId=bookstore
 ```
 
+### Reuse service as npm dependency for products-service
+
+Install the reusable service project as npm dependency
+
+```bash
+> npm install $(npm pack ../products-service -s)
+```
+
+Install all other packages and simplify the overall dependency structure `npm dedupe`.
+
+```bash
+> npm install && npm dedupe
+```
+
+# VSCode Launch Config
+
+Locate in `".vscode/launch.json"`.
+
+```json
+{
+    "configurations": [
+      {
+        "type": "java",
+        "name": "CodeLens (Launch) - Application",
+        "request": "launch",
+        "mainClass": "com.sap.cap.bookstore.Application",
+        "projectName": "bookstore"
+      },
+      {
+        "name": "Run bookstore",
+        "type": "java",
+        "request": "launch",
+        "mainClass": "com.sap.cap.bookstore.Application",
+        "projectName": "bookstore",
+        "preLaunchTask": "Build bookstore",
+        "cwd": "${workspaceFolder}",
+        "args": [
+          "--spring.profiles.active=default"
+        ],
+        "env": {
+          "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/path_to_bookstore\\\",\\\"profileName\\\":\\\"default\\\"}\"}"
+        }
+      }
+    ],
+    "version": "0.2.0"
+  }
+```
+
 # Reference
 
 [Build a Business Application Using CAP for Java](https://developers.sap.com/mission.cap-java-app.html)
