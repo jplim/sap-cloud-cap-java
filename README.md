@@ -5,17 +5,19 @@ SAP Cloud Application Programming Model in Java
 
 ## Usage
 
+### Initialize the project
+
 Initialize the application using maven arcetype `cds-services-archtype`.
 
-```
+```bash
 > mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
 -DarchetypeVersion=RELEASE \
 -DgroupId=com.sap.cap -DartifactId=products-service -Dpackage=com.sap.cap.productsservice
 ```
 
-Alternative
+Alternative.
 
-```
+```bash
 > cds init products-service --add java --java:package com.sap.cap.productsservice
 ```
 
