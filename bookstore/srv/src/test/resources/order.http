@@ -17,7 +17,26 @@ Content-Type: application/json
     "amount": 2
 }
 
-### Create another new order
+### Create a new order
+POST http://localhost:8080/odata/v4/OrdersService/Orders
+Content-Type: application/json
+
+{
+    "ID": "017f4ac4-7f07-4c07-a009-3168317a10cf",
+    "currency_code": "USD"
+}
+
+### Create a new order item
+POST http://localhost:8080/odata/v4/OrdersService/OrderItems
+Content-Type: application/json
+
+{
+    "parent_ID": "017f4ac4-7f07-4c07-a009-3168317a10cf",
+    "book_ID": "fd0c5fda-8811-4e20-bcff-3a776abc290a",
+    "amount": 4
+}
+
+### Create a new order
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
 
@@ -26,7 +45,7 @@ Content-Type: application/json
     "currency_code": "USD"
 }
 
-### Create another new order item
+### Create a new order item
 POST http://localhost:8080/odata/v4/OrdersService/OrderItems
 Content-Type: application/json
 
