@@ -38,7 +38,9 @@ Initialize the database with the defined domain model.
 Configure CAP application to use SQLite database.
 
 1. Go to `srv/src/main/resources`, locate and open the `application.yaml` and modify the file as follow:
+   
 2. For the field `url`, replace the string `"jdbc:sqlite::memory:"` with a reference to your local database file `"jdbc:sqlite:/home/user/projects/products-service/sqlite.db"`
+   
 3. Set the value of `initialization-mode` from `always` to `never`, because you've already initialized the database when running `cds deploy --to sqlite`.
 
 ```yaml
@@ -104,7 +106,9 @@ Initialize the database with the defined domain model.
 Configure CAP application to use SQLite database.
 
 1. Go to `srv/src/main/resources`, locate and open the `application.yaml` and modify the file as follow:
+   
 2. For the field `url`, replace the string `"jdbc:sqlite::memory:"` with a reference to your local database file `"jdbc:sqlite:/home/user/projects/products-service/sqlite.db"`
+   
 3. Set the value of `initialization-mode` from `always` to `never`, because you've already initialized the database when running `cds deploy --to sqlite`.
 
 ```yaml
