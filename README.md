@@ -119,6 +119,78 @@ spring:
       maximum-pool-size: 1
 ```
 
+### Deploy database artifacts to SAP HANA
+
+1. Login to Cloud Foundry with CF CLI.
+   
+2. Install hdi-deploy node package:
+   ```bash
+   > npm install --save-dev @sap/hdi-deploy
+   ```
+
+3. Add following configuration to file `.cdrsc.json` in root folder of `bookstore` project.
+   ```json
+   { "hana" : { "deploy-format": "hdbtable" } }
+   ```
+   `.hdbtable` and `.hdbview` files will be generated in the `(gen/)db/src/gen/` folder.
+
+4. Create an SAP HANA service instance and implicitly push all artifacts to the database using:
+   ```bash
+   > cds deploy --to hana:bookstore-hana
+   ```
+
+5. Configure application to use SAP HANA locally. Edit `pom.xml` in the `srv` directory and add the `<dependencies>` tag.
+   ```xml
+   <dependency>
+       <groupId>com.sap.cds</groupId>
+       <artifactId>cds-feature-hana</artifactId>
+   </dependency>
+   ```
+
+6. Restart the application with SAP HANA connectivity.
+   ```bash
+   > mvn spring-boot:run -Dspring-boot.run.profiles=cloud
+   ```
+
+### Deploy CAP Java App to SCP
+
+1. Create a CF app manifest called `manifest.yml` file in `bookstore` project folder.
+   ```yaml
+   ---
+   applications:
+   - name: bookstore
+     path: srv/target/bookstore-exec.jar
+     random-route: true
+     services:
+     - bookstore-hana
+   ```
+
+2. Enable auto-configuration of SAP HANA db connection.
+   Add the following dependency under `<dependencies>` tag and save it to `pom.xml` file.
+   ```xml
+   <dependency>
+       <groupId>com.sap.cds</groupId>
+       <artifactId>cds-feature-cloudfoundry</artifactId>
+   </dependency>
+   ```
+
+### Push the application
+
+1. Build the application.
+   ```bash
+   > mvn clean install
+   ```
+
+2. Push the application to the cloud.
+   ```bash
+   > cf push
+   ```
+
+3. To retrieve the application URL.
+   ```bash
+   > cf app bookstore
+   ```
+
 # VSCode Configs
 
 ## Launch config
